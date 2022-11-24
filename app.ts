@@ -1,6 +1,6 @@
 
 import fastify from "fastify";
-import FinnhubAPI, { FinnhubWS } from '@stoqey/finnhub';
+import FinnhubAPI from '@stoqey/finnhub';
 
 import cors from "@fastify/cors"
 
@@ -23,7 +23,7 @@ server.get("/health", async (request, reply) => {
   return "OK\n";
 });
 
-server.listen({ port: 8080 }, (err, address) => {
+server.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);

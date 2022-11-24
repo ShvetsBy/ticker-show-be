@@ -8,8 +8,9 @@
   },
   "scripts": {
     "test": "tap \"test/**/*.test.js\"",
-    "start": "fastify start -l info app.ts",
-    "dev": "nodemon app.ts localhost 8080"
+    "start": "node ./dist/app.js",
+    "dev": "nodemon app.ts localhost 8080",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
