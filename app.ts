@@ -1,15 +1,21 @@
+
 import fastify from "fastify";
+import FinnhubAPI, { FinnhubWS } from '@stoqey/finnhub';
+
+import cors from "@fastify/cors"
 
 const server = fastify();
-
+server.register(cors, {})
 declare interface IQueryString {
   ticker: string;
 }
 
 server.get<{Querystring: IQueryString}>('/ticker', async (request) => {
   const { ticker } = request.query;
-  
-  return ticker;
+  const finnHubKey  = process.env.KEY;
+  const finnhubAPI = new FinnhubAPI(finnHubKey);
+  const quote = await finnhubAPI.getQuote(ticker);
+  return quote;
 })
 
 
